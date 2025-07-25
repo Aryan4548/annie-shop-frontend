@@ -1,0 +1,150 @@
+/* LoginSignUp.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fceeff;
+}
+
+.loginsignup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: #fceeff;
+}
+
+.loginsignup-container {
+  background-color: #fff;
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: 0.3s ease;
+}
+
+.loginsignup-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+  color: #222;
+}
+
+.loginsignup-fileds {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.loginsignup-fileds input {
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+.loginupsignup-login span {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: none;
+}
+
+.loginsignup-fileds input:focus {
+  border-color: #ff4c4c;
+  box-shadow: 0 0 5px rgba(255, 76, 76, 0.4);
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background-color: #ff4c4c;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background-color: #e14343;
+}
+
+.loginupsignup-login {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.loginupsignup-login span {
+  color: #ff4c4c;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.loginsignup-agree {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 10px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* ===========================
+   Responsive Styling
+=========================== */
+
+@media (max-width: 768px) {
+  .loginsignup-container {
+    padding: 35px 25px;
+  }
+
+  .loginsignup-container h1 {
+    font-size: 28px;
+  }
+
+  button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginsignup {
+    padding: 0 26px;
+  }
+
+  .loginsignup-container {
+    padding: 25px 18px;
+    border-radius: 12px;
+  }
+
+  .loginsignup-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .loginsignup-fileds input {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .loginsignup-agree {
+    font-size: 12px;
+  }
+
+  .loginupsignup-login {
+    font-size: 13px;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 15px;
+  }
+}

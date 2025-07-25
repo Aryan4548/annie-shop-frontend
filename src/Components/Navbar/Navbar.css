@@ -1,0 +1,160 @@
+/* Core Layout */
+.navbar {
+  background: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 100;
+  width: 100%;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  position: relative;
+}
+
+/* Logo */
+.navbar-logo-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* Desktop Menu */
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  font-weight: bold;
+}
+
+.navbar-menu li a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Right Icons */
+.navbar-right-icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.icon-link {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background-color: #b91c1c;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Mobile Left Menu Button */
+.navbar-mobile-left {
+  display: none;
+}
+
+/* Search Form */
+.navbar-search-form {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  margin-top: 10px;
+  z-index: 200;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Mobile Menu Slide */
+.navbar-slide-menu {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.navbar-slide-menu li a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Visibility Control */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
+  }
+
+  .navbar-mobile-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-logo-wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .navbar-right-icons {
+    margin-left: auto;
+    display: flex;
+    gap: 14px;
+  }
+
+  .navbar-slide-menu {
+    display: flex;
+  }
+
+  .navbar-search-form {
+    top: 60px;
+  }
+}

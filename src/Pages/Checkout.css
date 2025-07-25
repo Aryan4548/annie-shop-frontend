@@ -1,0 +1,172 @@
+.checkout {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.checkout h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.checkout-left,
+.checkout-right {
+  flex: 1;
+  min-width: 320px;
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.6rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.checkout-form label {
+  display: block;
+  margin: 0.6rem 0;
+  font-size: 0.95rem;
+}
+
+.summary-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.summary-total div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  font-weight: 500;
+}
+
+.summary-total div strong {
+  font-size: 1.1rem;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  margin-top: 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #000;
+}
+
+.success-msg {
+  color: green;
+  margin-top: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ✅ Responsive Styles */
+@media (max-width: 1024px) {
+  .checkout {
+    padding: 1.5rem;
+  }
+
+  .checkout-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .checkout h2 {
+    font-size: 1.5rem;
+  }
+
+  .checkout-left,
+  .checkout-right {
+    padding: 1rem;
+  }
+
+  .checkout-form input {
+    padding: 0.65rem;
+    font-size: 0.95rem;
+  }
+
+  button {
+    font-size: 0.95rem;
+    padding: 0.9rem;
+  }
+
+  .summary-item,
+  .summary-total div {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Delivery Method Styles --- */
+.checkout-form h4 {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.checkout-form .delivery-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checkout-form .delivery-options label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.checkout-form .delivery-options label:hover {
+  border-color: #888;
+  background: #f9f9f9;
+}
+
+.checkout-form .delivery-options span {
+  flex: 1;
+}
+
+.checkout-form input[type="radio"] {
+  transform: scale(1.2);
+  accent-color: #222;
+  margin-left: 1rem;
+}

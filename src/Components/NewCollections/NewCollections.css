@@ -1,0 +1,65 @@
+.new-collections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 100px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.new-collections h1 {
+  color: #171717;
+  font-size: 45px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.new-collections hr {
+  width: 200px;
+  height: 6px;
+  border-radius: 10px;
+  background: #252525;
+  margin-bottom: 40px;
+}
+
+/* === Responsive Grid for Collection Items === */
+.collections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* === Optional fine-tuning with breakpoints === */
+
+/* Tablet adjustment (optional): slightly reduce gap */
+@media (max-width: 1024px) {
+  .new-collections h1 {
+    font-size: 36px;
+  }
+
+  .collections {
+    gap: 24px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .new-collections h1 {
+    font-size: 28px;
+  }
+
+  .new-collections hr {
+    width: 120px;
+    height: 4px;
+  }
+
+  .collections {
+    gap: 20px;
+    padding: 0 8px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
