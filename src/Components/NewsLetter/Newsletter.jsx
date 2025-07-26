@@ -10,7 +10,7 @@ const Newsletter = () => {
     if (!email) return setStatus('Please enter an email.');
 
     try {
-      // First check if email already exists in database
+    
       const all = await axios.get('http://localhost:4000/allcustomers');
       const exists = all.data.some(c => c.email === email);
       if (exists) return setStatus('You are already subscribed.');
