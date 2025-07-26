@@ -1,14 +1,11 @@
-
-import Collection from '../Components/Collection/Collection'
-
-
+import Collection from '../Components/Collection/Collection';
 
 const Product = () => {
   return (
     <div>
       <Collection />
     </div>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;
