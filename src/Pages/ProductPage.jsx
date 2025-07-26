@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams,  useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ShopContext } from '../Context/ShopContext';
 import './CSS/ProductPage.css';
 
@@ -8,7 +8,7 @@ const ProductPage = () => {
   const productId = parseInt(id);
   const navigate = useNavigate();
 
-  const { addtocart, removefromcart, cartitems, all_products } = useContext(ShopContext);
+  const { addtocart, all_products } = useContext(ShopContext);
 
   const [product, setProduct] = useState(null);
   const [activeImage, setActiveImage] = useState('');
