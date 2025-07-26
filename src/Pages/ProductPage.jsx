@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useParams,  useNavigate } from 'react-router-dom';
 import { ShopContext } from '../Context/ShopContext';
 import './CSS/ProductPage.css';
 
