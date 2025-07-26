@@ -10,17 +10,19 @@ const Newsletter = () => {
     if (!email) return setStatus('Please enter an email.');
 
     try {
-    
+      // Check if email already exists
       const all = await axios.get('http://localhost:4000/allcustomers');
       const exists = all.data.some(c => c.email === email);
       if (exists) return setStatus('You are already subscribed.');
 
-      const response = await axios.post('http://localhost:4000/addcustomer', {
+      // Add new subscriber (no need to store response)
+      await axios.post('http://localhost:4000/addcustomer', {
         name: "Newsletter Subscriber",
         email,
         joined: new Date().toISOString().slice(0, 10),
         totalOrders: 0
       });
+
       setStatus('Subscribed successfully!');
       setEmail('');
     } catch (err) {
