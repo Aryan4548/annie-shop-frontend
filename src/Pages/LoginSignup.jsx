@@ -23,7 +23,7 @@ const LoginSignup = () => {
 
   const handleSubmit = async () => {
     try {
-      const url = `http://localhost:4000/${isSignup ? 'signup' : 'login'}`;
+      const url = `https://annieshop-backend.onrender.com/${isSignup ? 'signup' : 'login'}`;
       const payload = isSignup ? form : { email: form.email, password: form.password };
 
       const res = await axios.post(url, payload);
