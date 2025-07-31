@@ -14,7 +14,7 @@ const ShopContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/allproducts")
+    axios.get("https://annieshop-backend.onrender.com/allproducts")
       .then(res => {
         setAllProducts(res.data);
         setLoading(false);
