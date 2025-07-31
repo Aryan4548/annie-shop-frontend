@@ -74,7 +74,7 @@ const Checkout = () => {
     };
 
     try {
-      await axios.post('http://localhost:4000/placeorder', payload);
+      await axios.post('https://annieshop-backend.onrender.com/placeorder', payload);
       setSuccess(true);
       setCartItems({});
       localStorage.removeItem("annie_cart");
