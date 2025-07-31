@@ -30,7 +30,7 @@ const LoginSignup = () => {
 
       if (isSignup) {
         // Automatically login after signup
-        const loginRes = await axios.post('http://localhost:4000/login', {
+        const loginRes = await axios.post('https://annieshop-backend.onrender.com/login', {
           email: form.email,
           password: form.password,
         });
