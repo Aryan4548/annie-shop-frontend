@@ -9,7 +9,7 @@ const CategoryShowcase = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/allproducts')
+    axios.get('https://annieshop-backend.onrender.com/allproducts')
       .then(res => {
         const all = res.data;
         setProducts(all);
