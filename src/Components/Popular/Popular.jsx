@@ -7,7 +7,7 @@ const Popular = () => {
   const [popularItems, setPopularItems] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/popularproducts')
+    axios.get('https://annieshop-backend.onrender.com/popularproducts')
       .then(res => setPopularItems(res.data))
       .catch(err => console.error("Error fetching popular products:", err));
   }, []);
