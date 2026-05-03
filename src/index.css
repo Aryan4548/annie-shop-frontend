@@ -1,0 +1,112 @@
+*{
+  margin: 0;
+}
+
+body {
+  cursor: default;
+}
+
+body :is(
+  p,
+  span,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  small,
+  strong,
+  em,
+  b,
+  i
+) {
+  cursor: text;
+}
+
+body :is(
+  a,
+  button,
+  summary,
+  label,
+  select,
+  [role="button"],
+  [role="link"],
+  [tabindex]:not([tabindex="-1"]),
+  input[type="button"],
+  input[type="checkbox"],
+  input[type="color"],
+  input[type="date"],
+  input[type="datetime-local"],
+  input[type="file"],
+  input[type="month"],
+  input[type="radio"],
+  input[type="range"],
+  input[type="reset"],
+  input[type="submit"],
+  input[type="time"],
+  input[type="week"]
+),
+body :is(
+  a,
+  button,
+  summary,
+  label,
+  select,
+  [role="button"],
+  [role="link"],
+  [tabindex]:not([tabindex="-1"])
+) * {
+  cursor: pointer;
+}
+
+body :is(
+  input:not([type]),
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="text"],
+  input[type="url"],
+  textarea,
+  [contenteditable="true"]
+) {
+  cursor: text;
+}
+
+body :is(
+  button,
+  input,
+  select,
+  textarea,
+  [role="button"],
+  [role="link"],
+  [tabindex]
+):disabled,
+body [aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'poppins';
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.hero-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

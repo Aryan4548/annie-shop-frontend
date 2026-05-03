@@ -1,0 +1,54 @@
+[
+  {
+    "_id": "69e501953649826e0f721b4d",
+    "id": 1,
+    "name": "Demon Slayer Rengoku LED Katana Sword | 108 cm | Rechargeable",
+    "images": [
+      "/images/rengoku-katana.webp"
+    ],
+    "category": "Katana and wepons",
+    "new_price": 1699,
+    "old_price": 1999,
+    "description": "Unleash the fiery spirit of Kyojuro Rengoku with this stunning LED Katana Sword! Measuring an impressive 108 cm, this replica perfectly captures the essence of the Flame Hashira's iconic weapon from Demon Slayer: Kimetsu no Yaiba. Designed with intricate detailing, the blade features an LED light effect, bringing Rengoku's blazing sword to life. Whether you're a dedicated Demon Slayer fan, a cosplayer, or a collector, this katana is a must-have. Add this striking piece to your collection, available exclusively at Shopping Nest! By ANnieShop",
+    "available": true,
+    "popular": true,
+    "date": "2026-04-19T16:23:49.613Z",
+    "__v": 0,
+    "preorder": false
+  },
+  {
+    "_id": "69e50a1b53a68d64bf192fb2",
+    "id": 2,
+    "name": "Dragon Ball Z - Goku Spirit Bomb 25cm PVC Anime Figure with lights",
+    "images": [
+      "/images/goku-spirit-bomb.jpg"
+    ],
+    "category": "Katanas",
+    "new_price": 1500,
+    "old_price": 3000,
+    "description": "Unleash the power of Goku! This detailed action figure captures his iconic look and fierce determination from Dragon Ball Z. Perfect for collectors and fans who want to bring Saiyan energy to their shelves.",
+    "available": true,
+    "popular": true,
+    "date": "2026-04-19T17:00:11.759Z",
+    "__v": 0,
+    "preorder": true
+  },
+  {
+    "_id": "69ec6c2e03759867445a2d56",
+    "id": 3,
+    "name": "3D hologram fan 42cm with build in audio",
+    "images": [
+      "/images/hologram-fan.png"
+    ],
+    "category": "",
+    "subcategory": "3d Hologram",
+    "new_price": 3699,
+    "old_price": 4999,
+    "description": "3D hologram pro led fan - best for marketing purpose",
+    "available": true,
+    "popular": true,
+    "preorder": true,
+    "date": "2026-04-25T07:24:30.159Z",
+    "__v": 0
+  }
+]
