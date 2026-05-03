@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaBolt, FaBoxOpen, FaClock, FaCrown, FaStar } from 'react-icons/fa';
 import { useUser } from '../Context/UserContext';
 import API_BASE_URL from '../config/api';
+import Item from '../Components/Items/Item';
 import './CSS/Premium.css';
 
 const PREMIUM_PRICE = 499;
@@ -37,6 +38,9 @@ const Premium = () => {
   const [loadingStatus, setLoadingStatus] = useState(Boolean(user?.email));
   const [subscribing, setSubscribing] = useState(false);
   const [message, setMessage] = useState('');
+  const [premiumProducts, setPremiumProducts] = useState([]);
+  const [loadingProducts, setLoadingProducts] = useState(false);
+  const isPremium = Boolean(user?.isPremium);
 
   useEffect(() => {
     if (!user?.email) {
@@ -79,7 +83,46 @@ const Premium = () => {
     };
   }, [updateUser, user?.email]);
 
-  const isPremium = Boolean(user?.isPremium);
+  useEffect(() => {
+    if (!isPremium) {
+      setPremiumProducts([]);
+      setLoadingProducts(false);
+      return;
+    }
+
+    let isMounted = true;
+
+    const fetchPremiumProducts = async () => {
+      try {
+        setLoadingProducts(true);
+        const response = await axios.get(`${API_BASE_URL}/premiumproducts`);
+
+        if (!isMounted) {
+          return;
+        }
+
+        setPremiumProducts(response.data || []);
+      } catch (error) {
+        if (!isMounted) {
+          return;
+        }
+
+        console.error('Failed to fetch premium products:', error);
+        setMessage((current) => current || 'Unable to load premium products right now.');
+      } finally {
+        if (isMounted) {
+          setLoadingProducts(false);
+        }
+      }
+    };
+
+    fetchPremiumProducts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isPremium]);
+
   const premiumSubscribedAt = user?.premiumSubscribedAt
     ? new Date(user.premiumSubscribedAt).toLocaleDateString('en-IN', {
         day: 'numeric',
@@ -213,6 +256,32 @@ const Premium = () => {
           ))}
         </div>
       </section>
+
+      {isPremium ? (
+        <section className="premium-products-section">
+          <div className="premium-section-head">
+            <span>Premium products</span>
+            <h2>Exclusive drops unlocked for your membership</h2>
+          </div>
+
+          {loadingProducts ? (
+            <div className="premium-empty-state">
+              <strong>Loading premium products...</strong>
+            </div>
+          ) : premiumProducts.length > 0 ? (
+            <div className="premium-products-grid">
+              {premiumProducts.map((product) => (
+                <Item key={product.id} {...product} />
+              ))}
+            </div>
+          ) : (
+            <div className="premium-empty-state">
+              <strong>No premium products are live yet.</strong>
+              <p>As soon as premium-only drops are marked in admin, they will appear here.</p>
+            </div>
+          )}
+        </section>
+      ) : null}
     </main>
   );
 };

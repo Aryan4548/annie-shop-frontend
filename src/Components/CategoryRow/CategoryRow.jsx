@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './CategoryRow.css';
 import API_BASE_URL, { normalizeApiProducts } from '../../config/api';
-import { fallbackHighlightedCategories } from '../../utils/categories';
+import { fallbackHighlightedCategories, resolveCategorySlug } from '../../utils/categories';
 import { scrollPageToTop } from '../../utils/scroll';
 import { handleProductImageError } from '../../utils/image';
 
@@ -45,8 +45,9 @@ const CategoryRow = () => {
             type="button"
             className="category-row-item"
             onClick={() => {
+              const categorySlug = resolveCategorySlug(item);
               scrollPageToTop();
-              navigate(`/allproducts?category=${item.slug}`);
+              navigate(`/allproducts?category=${categorySlug}`);
               window.setTimeout(scrollPageToTop, 0);
               window.setTimeout(scrollPageToTop, 80);
             }}

@@ -12,6 +12,7 @@ import {
   isAllCategory,
   matchesCategory,
   normalizeText,
+  resolveCategorySlug,
 } from '../../utils/categories';
 
 const sortOptions = [
@@ -30,6 +31,13 @@ const allCategory = {
   highlighted: true,
   displayOrder: -1,
 };
+
+const formatCategoryLabel = (slug = '') =>
+  String(slug)
+    .split('-')
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
 
 const Collection = () => {
   const [categories, setCategories] = useState([]);
@@ -66,10 +74,27 @@ const Collection = () => {
 
   const availableCategories = useMemo(() => [allCategory, ...categories], [categories]);
 
-  const currentCategory =
-    availableCategories.find(
-      (category) => normalizeText(category.slug || category.name) === normalizeText(activeCategory)
-    ) || allCategory;
+  const currentCategory = useMemo(() => {
+    const matchedCategory = availableCategories.find(
+      (category) => resolveCategorySlug(category) === normalizeText(activeCategory)
+    );
+
+    if (matchedCategory) {
+      return matchedCategory;
+    }
+
+    if (normalizeText(activeCategory) && normalizeText(activeCategory) !== allCategory.slug) {
+      return {
+        id: `virtual-${activeCategory}`,
+        name: formatCategoryLabel(activeCategory),
+        slug: activeCategory,
+        image: '',
+        highlighted: true,
+      };
+    }
+
+    return allCategory;
+  }, [activeCategory, availableCategories]);
 
   const visibleProducts = useMemo(() => {
     const filtered = isAllCategory(currentCategory)
@@ -105,9 +130,9 @@ const Collection = () => {
             key={category.id || category.slug}
             type="button"
             className={`catalog-category-button ${
-              normalizeText(activeCategory) === normalizeText(category.slug || category.name) ? 'active' : ''
+              normalizeText(activeCategory) === resolveCategorySlug(category) ? 'active' : ''
             }`}
-            onClick={() => handleCategoryChange(category.slug)}
+            onClick={() => handleCategoryChange(resolveCategorySlug(category))}
           >
             <div className="catalog-category-image-wrap">
               {category.image ? (

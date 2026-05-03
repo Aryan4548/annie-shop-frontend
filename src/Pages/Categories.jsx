@@ -38,6 +38,8 @@ const Categories = (props) => {
     });
   }, [all_products, selectedCategory, sortBy]);
 
+  const useScrollableRail = filteredProducts.length > 5;
+
   return (
     <div className='shop-category'>
       <img src={props.banner} alt="" className="shop-category-banner" />
@@ -62,19 +64,21 @@ const Categories = (props) => {
         </div>
       </div>
 
-      <div className="shop-category-products">
+      <div className={`shop-category-products ${useScrollableRail ? 'is-scroll-rail' : ''}`}>
         {filteredProducts.map((item) => (
-          <Item
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            images={item.images}
-            category={item.category}
-            new_price={item.new_price}
-            old_price={item.old_price}
-            popular={item.popular}
-            preorder={item.preorder}
-          />
+          <div key={item.id} className="shop-category-product-card">
+            <Item
+              id={item.id}
+              name={item.name}
+              images={item.images}
+              category={item.category}
+              new_price={item.new_price}
+              old_price={item.old_price}
+              popular={item.popular}
+              preorder={item.preorder}
+              premiumOnly={item.premiumOnly}
+            />
+          </div>
         ))}
       </div>
     </div>

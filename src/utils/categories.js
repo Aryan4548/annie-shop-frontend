@@ -16,20 +16,18 @@ export const fallbackHighlightedCategories = [
   { id: 7, name: 'Manga & Comics', slug: 'manga-and-comics', image: '', highlighted: true, displayOrder: 6 },
 ];
 
+export const resolveCategorySlug = (category) =>
+  normalizeText(category?.slug || category?.name || category);
+
 export const isAllCategory = (category) => {
-  const token = normalizeText(category?.slug || category?.name || category);
-  return ['all', 'all-products', '999-store', '999'].includes(token);
+  const token = resolveCategorySlug(category);
+  return ['all', 'all-products'].includes(token);
 };
 
 export const isPreorderCategory = (category) => {
-  const token = normalizeText(category?.slug || category?.name || category);
+  const token = resolveCategorySlug(category);
   return token.includes('pre-order') || token.includes('preorder');
 };
-
-const toKeywordSet = (value = '') =>
-  normalizeText(value)
-    .split('-')
-    .filter((token) => token && !['and', 'the', 'for'].includes(token));
 
 export const matchesCategory = (product, category) => {
   if (isAllCategory(category)) {
@@ -41,37 +39,14 @@ export const matchesCategory = (product, category) => {
   }
 
   const categoryName = normalizeText(category?.name || category);
-  const categorySlug = normalizeText(category?.slug || category?.name || category);
+  const categorySlug = resolveCategorySlug(category);
   const productCategory = normalizeText(product?.category || '');
   const productSubcategory = normalizeText(product?.subcategory || '');
-  const productName = normalizeText(product?.name || '');
-
-  const categoryTokens = toKeywordSet(`${categoryName}-${categorySlug}`);
-  const productTokens = [
-    ...toKeywordSet(productCategory),
-    ...toKeywordSet(productSubcategory),
-    ...toKeywordSet(productName),
-  ];
-
-  const hasTokenOverlap = categoryTokens.some((token) => productTokens.includes(token));
-  const hasLooseTextMatch = [
-    productCategory,
-    productSubcategory,
-    productName,
-  ].some(
-    (value) =>
-      value.includes(categorySlug) ||
-      value.includes(categoryName) ||
-      categorySlug.includes(value) ||
-      categoryName.includes(value)
-  );
 
   return (
     productCategory === categorySlug ||
     productCategory === categoryName ||
     productSubcategory === categorySlug ||
-    productSubcategory === categoryName ||
-    hasTokenOverlap ||
-    hasLooseTextMatch
+    productSubcategory === categoryName
   );
 };
