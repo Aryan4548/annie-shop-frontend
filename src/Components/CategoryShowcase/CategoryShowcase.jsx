@@ -1,55 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import './CategoryShowcase.css';
-import axios from 'axios';
 import Item from '../Items/Item';
-import API_BASE_URL from '../../config/api';
+import { ShopContext } from '../../Context/ShopContext';
 
 const CategoryShowcase = () => {
-  const [products, setProducts] = useState([]);
   const [visibleCount, setVisibleCount] = useState({});
-  const [categories, setCategories] = useState([]);
+  const { all_products: products = [] } = useContext(ShopContext);
+
+  const categories = useMemo(
+    () => [...new Set(products.map((product) => String(product.category || '').trim()).filter(Boolean))],
+    [products]
+  );
 
   useEffect(() => {
-    axios.get(`${API_BASE_URL}/allproducts`)
-      .then(res => {
-        const all = res.data;
-        setProducts(all);
+    setVisibleCount((previous) => {
+      const next = {};
 
-        const uniqueCategories = [...new Set(all.map(p => p.category))];
-        setCategories(uniqueCategories);
+      categories.forEach((category) => {
+        next[category] = previous[category] || 6;
+      });
 
-        const initial = {};
-        uniqueCategories.forEach(cat => (initial[cat] = 6));
-        setVisibleCount(initial);
-      })
-      .catch(err => console.error('Error fetching products:', err));
-  }, []);
+      return next;
+    });
+  }, [categories]);
 
   const handleShowMore = (category) => {
-    setVisibleCount(prev => ({
+    setVisibleCount((prev) => ({
       ...prev,
-      [category]: prev[category] + 10
+      [category]: (prev[category] || 6) + 10
     }));
   };
 
   return (
     <div className="category-showcase">
-      {categories.map((category, index) => {
-        const items = products.filter(item => item.category === category);
+      {categories.map((category) => {
+        const items = products.filter((item) => item.category === category);
         const visibleItems = items.slice(0, visibleCount[category] || 6);
 
         return (
-          <div className="category-block" key={index}>
+          <div className="category-block" key={category}>
             <h2>{category}</h2>
             <div className="category-items">
-              {visibleItems.map((item, i) => (
+              {visibleItems.map((item) => (
                 <Item
-                  key={i}
+                  key={item.id}
                   id={item.id}
                   name={item.name}
-                  images={item.images} // ✅ Pass full array
+                  images={item.images}
+                  category={item.category}
                   new_price={item.new_price}
                   old_price={item.old_price}
+                  popular={item.popular}
+                  preorder={item.preorder}
+                  premiumOnly={item.premiumOnly}
                 />
               ))}
             </div>
