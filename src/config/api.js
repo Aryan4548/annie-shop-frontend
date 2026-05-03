@@ -11,6 +11,43 @@ const API_BASE_URL =
 
 const normalizeBaseUrl = (value) => String(value || '').replace(/\/+$/, '');
 
+export const getImageFilename = (url) => {
+  if (!url || typeof url !== 'string') {
+    return '';
+  }
+
+  const trimmedUrl = url.trim();
+
+  if (!trimmedUrl) {
+    return '';
+  }
+
+  try {
+    const parsedUrl = new URL(trimmedUrl);
+    return parsedUrl.pathname.split('/').filter(Boolean).pop() || '';
+  } catch (error) {
+    return trimmedUrl.split('/').filter(Boolean).pop() || '';
+  }
+};
+
+export const getImageFallbackUrl = (url) => {
+  const filename = getImageFilename(url);
+  return filename ? `/images/${filename}` : '';
+};
+
+export const handleProductImageError = (event, originalUrl) => {
+  const image = event.currentTarget;
+  const fallbackUrl = getImageFallbackUrl(originalUrl || image.getAttribute('src') || '');
+
+  if (fallbackUrl && image.dataset.fallbackApplied !== 'true') {
+    image.dataset.fallbackApplied = 'true';
+    image.src = fallbackUrl;
+    return;
+  }
+
+  image.onerror = null;
+};
+
 export const resolveApiAssetUrl = (url) => {
   if (!url || typeof url !== 'string') {
     return '';

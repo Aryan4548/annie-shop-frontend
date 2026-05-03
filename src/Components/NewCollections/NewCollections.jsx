@@ -3,6 +3,7 @@ import './NewCollections.css';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
 import { scrollPageToTop } from '../../utils/scroll';
+import { handleProductImageError } from '../../utils/image';
 
 const NewCollections = () => {
   const { all_products: allProducts = [] } = useContext(ShopContext);
@@ -24,7 +25,11 @@ const NewCollections = () => {
             <article key={item.id} className="new-collections-card">
               <span className="new-collections-badge">New</span>
               <Link to={`/product/${item.id}`} className="new-collections-media" onClick={scrollPageToTop}>
-                <img src={item.images?.[0]} alt={item.name} />
+                <img
+                  src={item.images?.[0]}
+                  alt={item.name}
+                  onError={(event) => handleProductImageError(event, item.images?.[0] || '')}
+                />
               </Link>
               <div className="new-collections-footer">
                 <div className="new-collections-copy">

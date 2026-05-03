@@ -3,6 +3,7 @@ import './Popular.css';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
 import { scrollPageToTop } from '../../utils/scroll';
+import { handleProductImageError } from '../../utils/image';
 
 const ITEMS_PER_PAGE = 6;
 const SLIDE_DURATION = 280;
@@ -76,7 +77,11 @@ const Popular = () => {
               <article key={item.id} className="popular-card">
                 <span className="popular-badge">Popular</span>
                 <Link to={`/product/${item.id}`} className="popular-card-media" onClick={scrollPageToTop}>
-                  <img src={item.images?.[0]} alt={item.name} />
+                  <img
+                    src={item.images?.[0]}
+                    alt={item.name}
+                    onError={(event) => handleProductImageError(event, item.images?.[0] || '')}
+                  />
                 </Link>
                 <div className="popular-card-footer">
                   <div className="popular-card-copy">

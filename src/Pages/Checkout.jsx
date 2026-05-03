@@ -5,6 +5,7 @@ import { ShopContext } from '../Context/ShopContext';
 import { useUser } from '../Context/UserContext';
 import './Checkout.css';
 import API_BASE_URL from '../config/api';
+import { handleProductImageError } from '../utils/image';
 
 const formatCurrency = (value) => `Rs. ${Number(value || 0).toFixed(2)}`;
 
@@ -360,6 +361,7 @@ const Checkout = () => {
                       src={featuredProduct.images?.[0] || ''}
                       alt={featuredProduct.name}
                       className="checkout-featured-image"
+                      onError={(event) => handleProductImageError(event, featuredProduct.images?.[0] || '')}
                     />
                   </div>
                   {cartProducts.length > 1 ? (

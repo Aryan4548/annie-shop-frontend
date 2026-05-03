@@ -4,6 +4,7 @@ import { FaRegShareSquare } from 'react-icons/fa';
 import { ShopContext } from '../Context/ShopContext';
 import { scrollPageToTop } from '../utils/scroll';
 import { useUser } from '../Context/UserContext';
+import { handleProductImageError } from '../utils/image';
 import './CSS/ProductPage.css';
 
 const ProductPage = () => {
@@ -133,7 +134,12 @@ const ProductPage = () => {
         <div className="product-page">
           <section className="product-gallery-column">
             <div className="product-main-image-card">
-              <img src={activeImage || productImages[0]} alt={product.name} className="product-main-image" />
+              <img
+                src={activeImage || productImages[0]}
+                alt={product.name}
+                className="product-main-image"
+                onError={(event) => handleProductImageError(event, activeImage || productImages[0] || '')}
+              />
             </div>
 
             <div className="product-thumbnails-row">
@@ -144,7 +150,11 @@ const ProductPage = () => {
                   className={`product-thumb-button ${img === activeImage ? 'active' : ''}`}
                   onClick={() => setActiveImage(img)}
                 >
-                  <img src={img} alt={`${product.name} ${index + 1}`} />
+                  <img
+                    src={img}
+                    alt={`${product.name} ${index + 1}`}
+                    onError={(event) => handleProductImageError(event, img || '')}
+                  />
                 </button>
               ))}
             </div>
@@ -252,7 +262,11 @@ const ProductPage = () => {
                   className="related-product-card"
                   onClick={scrollPageToTop}
                 >
-                  <img src={item.images?.[0] || ''} alt={item.name} />
+                  <img
+                    src={item.images?.[0] || ''}
+                    alt={item.name}
+                    onError={(event) => handleProductImageError(event, item.images?.[0] || '')}
+                  />
                   <h3 className="related-product-name" title={item.name}>{item.name}</h3>
                   <p>Rs. {Number(item.new_price || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 </Link>

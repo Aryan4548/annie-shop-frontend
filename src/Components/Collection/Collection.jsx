@@ -6,6 +6,7 @@ import './Collection.css';
 import API_BASE_URL, { normalizeApiProducts } from '../../config/api';
 import { scrollPageToTop } from '../../utils/scroll';
 import { ShopContext } from '../../Context/ShopContext';
+import { handleProductImageError } from '../../utils/image';
 import {
   fallbackHighlightedCategories,
   isAllCategory,
@@ -110,7 +111,11 @@ const Collection = () => {
           >
             <div className="catalog-category-image-wrap">
               {category.image ? (
-                <img src={category.image} alt={category.name} />
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  onError={(event) => handleProductImageError(event, category.image || '')}
+                />
               ) : (
                 <span className="catalog-category-fallback">{category.name.slice(0, 2).toUpperCase()}</span>
               )}

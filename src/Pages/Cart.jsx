@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { ShopContext } from '../Context/ShopContext';
 import { useUser } from '../Context/UserContext';
+import { handleProductImageError } from '../utils/image';
 import '../Components/Cart/Cart.css';
 
 const Cart = () => {
@@ -67,7 +68,12 @@ const Cart = () => {
             cartProducts.map(product => (
               <div className="cart-row" key={product.id}>
                 <div className="cart-product">
-                  <img src={product.images?.[0]} alt={product.name} className="cart-card-image" />
+                  <img
+                    src={product.images?.[0]}
+                    alt={product.name}
+                    className="cart-card-image"
+                    onError={(event) => handleProductImageError(event, product.images?.[0] || '')}
+                  />
                   <div className="cart-product-copy">
                     <p className="cart-brand">Annieshop</p>
                     <h3>{product.name}</h3>

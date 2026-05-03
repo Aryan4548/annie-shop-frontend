@@ -2,6 +2,7 @@ import React from 'react';
 import './Item.css';
 import { Link } from 'react-router-dom';
 import { scrollPageToTop } from '../../utils/scroll';
+import { handleProductImageError } from '../../utils/image';
 
 const Item = (props) => {
   const badge = props.premiumOnly ? 'Premium' : (props.preorder ? 'Pre Order' : (props.popular ? 'Popular' : ''));
@@ -18,6 +19,7 @@ const Item = (props) => {
           <img
             src={props.images?.[0] || ""}
             alt={props.name}
+            onError={(event) => handleProductImageError(event, props.images?.[0] || "")}
           />
         </div>
         <div className="item-footer">

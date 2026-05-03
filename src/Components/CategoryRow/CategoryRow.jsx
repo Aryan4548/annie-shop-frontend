@@ -5,6 +5,7 @@ import './CategoryRow.css';
 import API_BASE_URL, { normalizeApiProducts } from '../../config/api';
 import { fallbackHighlightedCategories } from '../../utils/categories';
 import { scrollPageToTop } from '../../utils/scroll';
+import { handleProductImageError } from '../../utils/image';
 
 const CategoryRow = () => {
   const [categories, setCategories] = useState([]);
@@ -52,7 +53,11 @@ const CategoryRow = () => {
           >
             <div className="category-row-thumb">
               {item.image ? (
-                <img src={item.image} alt={item.name} />
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  onError={(event) => handleProductImageError(event, item.image || '')}
+                />
               ) : (
                 <span>{item.name.slice(0, 2).toUpperCase()}</span>
               )}
