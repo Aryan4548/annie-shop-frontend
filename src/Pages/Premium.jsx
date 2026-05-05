@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBolt, FaBoxOpen, FaClock, FaCrown, FaStar } from 'react-icons/fa';
@@ -40,6 +40,7 @@ const Premium = () => {
   const [message, setMessage] = useState('');
   const [premiumProducts, setPremiumProducts] = useState([]);
   const [loadingProducts, setLoadingProducts] = useState(false);
+  const premiumProductsRef = useRef(null);
   const isPremium = Boolean(user?.isPremium);
 
   useEffect(() => {
@@ -160,6 +161,13 @@ const Premium = () => {
     }
   };
 
+  const handleBrowsePremiumDrops = () => {
+    premiumProductsRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
+
   return (
     <main className="premium-page">
       <section className="premium-hero">
@@ -183,7 +191,11 @@ const Premium = () => {
               </>
             ) : isPremium ? (
               <>
-                <button type="button" className="premium-primary-btn premium-primary-btn--active" onClick={() => navigate('/allproducts')}>
+                <button
+                  type="button"
+                  className="premium-primary-btn premium-primary-btn--active"
+                  onClick={handleBrowsePremiumDrops}
+                >
                   Browse premium-ready drops
                 </button>
                 <Link to="/profile" className="premium-secondary-btn">
@@ -258,7 +270,11 @@ const Premium = () => {
       </section>
 
       {isPremium ? (
-        <section className="premium-products-section">
+        <section
+          ref={premiumProductsRef}
+          id="premium-products"
+          className="premium-products-section"
+        >
           <div className="premium-section-head">
             <span>Premium products</span>
             <h2>Exclusive drops unlocked for your membership</h2>
